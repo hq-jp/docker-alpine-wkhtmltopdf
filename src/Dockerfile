@@ -1,6 +1,5 @@
 FROM alpine:3.10
 
-ENV WKHTMLTOX_VERSION=0.12.5
 ENV REPO=https://github.com/wkhtmltopdf/wkhtmltopdf.git
 
 # Copy patches
@@ -36,6 +35,9 @@ RUN apk add --no-cache                          \
     freetype-dev                                \
     && update-ms-fonts                          \
     && fc-cache -f
+
+# e.g. "0.12.6"
+ARG WKHTMLTOX_VERSION
 
 # Download source files
 RUN git clone --recursive $REPO /tmp/wkhtmltopdf                            \
